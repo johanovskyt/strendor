@@ -17,8 +17,9 @@
         "ext-zend-opcache": "*"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest",
+        "phpstan/phpstan": "^1.2",
         "phpunit/phpunit": "^9.5",
+        "roave/security-advisories": "dev-latest",
         "symfony/browser-kit": "6.0.*",
         "symfony/css-selector": "6.0.*",
         "symfony/phpunit-bridge": "^5.3"
@@ -55,6 +56,12 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "phpstan": "phpstan analyse -c phpstan.neon src tests --level 9 --no-progress",
+        "tests": "phpunit",
+        "ci": [
+            "@phpstan",
+            "@tests"
         ]
     },
     "conflict": {
